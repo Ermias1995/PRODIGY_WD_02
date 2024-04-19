@@ -2,12 +2,15 @@ const display = document.querySelector('.counter');
 const play = document.querySelector('#play');
 const stop = document.querySelector('#stop');
 const reset = document.querySelector('#reset');
+const lap = document.querySelector('#lap');
+const displayLap = document.querySelector('.lap');
 
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
 let miliseconds = 0;
 let interval=null;
+let h ,m,s,ms;
 
 function counting(){
     miliseconds++;
@@ -23,10 +26,10 @@ function counting(){
         }
     }
     }
-    let h = hours<10?"0"+hours : hours;
-    let m = minutes<10?"0"+minutes:minutes;
-    let s = seconds<10?"0"+seconds:seconds;
-    let ms = miliseconds<10?"0"+miliseconds:miliseconds;
+        h = hours<10?"0"+hours : hours;
+        m = minutes<10?"0"+minutes:minutes;
+        s = seconds<10?"0"+seconds:seconds;
+        ms = miliseconds<10?"0"+miliseconds:miliseconds;
     display.innerHTML = h +":"+ m +":"+ s +":"+ ms;
 }
 play.addEventListener("click",()=>{
@@ -46,6 +49,16 @@ reset.addEventListener("click",()=>{
     minutes = 0;
     seconds = 0;
     miliseconds = 0;
+    displayLap.innerHTML = "";
+    count = 1;
+});
+let count = 1;
+lap.addEventListener("click",()=>{
+    let l = document.createElement("p");
+    l = `Lap${count}---${h}:${m}:${s}:${ms}   `;
+    displayLap.append(l);
+    
+    count++;
 });
 
 
